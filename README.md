@@ -3,4 +3,4 @@ A repository containing all of my completed assignments and projects, uploaded t
 
 The files are coded in the Java programming language.
 
-August 2025, Clayton High School - Present (Dec 1)
+August 2025, Clayton High School - Present
