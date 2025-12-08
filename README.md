@@ -1,5 +1,5 @@
 # computer-science-applications
-A repository containing all of my completed assignments and projects, uploaded to the cloud. It follows the Collegeboard/PLTW curriculum.
+This repository contains all of my completed assignments and projects for AP COMPUTER SCIENCE APPLICATIONS, which have been uploaded to the cloud. It follows the College Board/PLTW curriculum.
 
 The files are coded in the Java programming language.
 
