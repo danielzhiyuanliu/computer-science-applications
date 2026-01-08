@@ -30,7 +30,7 @@ public class GameRunner {
         
         while (isPlaying) {
             Board.populate(); 
-            System.out.println("\nThe pile size is " + Board.pileSize + ".\n");
+            System.out.println("\nThe pile size is " + Board.getPileSize() + ".\n");
             
             nim.play();
         }

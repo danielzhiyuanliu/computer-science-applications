@@ -8,34 +8,6 @@ public class Game {
 
     public static String chosenPlayer = null;
 
-    public void myTurn() {
-        System.out.println("The turn goes to " + chosenPlayer + ".\n");
-        System.out.print("How many pieces do you want to choose? ");
-        int choosePiece = newScanner.nextInt();
-        newScanner.nextLine();
-
-        if (choosePiece < 1) {
-            System.out.println("You must take at least one piece.");
-            myTurn();
-        } else if (choosePiece > (0.5 * Board.pileSize)) {
-            System.out.println("You can take no more than half the size of the pile.");
-            myTurn();
-        } else {
-            Board.pileSize -= choosePiece;
-            System.out.println("\nThe new pile size is " + Board.pileSize + ".");
-            
-            switchPlayers();
-        }
-    }
-
-    public static void switchPlayers() {
-        if (chosenPlayer == GameRunner.playerOne) {
-                chosenPlayer = GameRunner.playerTwo;
-            } else {
-                chosenPlayer = GameRunner.playerOne;
-            }
-    }
-
     public void play() {
 
         double choosePlayer = Math.random();
@@ -46,11 +18,11 @@ public class Game {
             chosenPlayer = GameRunner.playerTwo;
         }
 
-        while (!(Board.pileSize <= 1)) {
-            myTurn();
+        while (!(Board.getPileSize() <= 1)) {
+            myTurn(); //if the pile size is not too small, then switch turns
         }
 
-        Game.switchPlayers();
+        Game.switchPlayers();  //switching because we are at 1 they lose, 
         System.out.println("\nThe game is over! The winner is " + Game.chosenPlayer + ".");
         
         if (Game.chosenPlayer.equals(GameRunner.playerOne)) {
@@ -71,5 +43,35 @@ public class Game {
             GameRunner.isPlaying = false;
             newScanner.close();
         }
+    }
+
+
+    public void myTurn() {
+        int boardSize = Board.getPileSize();
+        
+        System.out.println("The turn goes to " + chosenPlayer + ".\n");
+        System.out.print("How many pieces do you want to choose? ");
+        int choosePiece = newScanner.nextInt();
+        newScanner.nextLine();
+
+        if (choosePiece < 1) {
+            System.out.println("You must take at least one piece.");
+            myTurn(); // don't switch players or penalize for mistake, prompt again
+        } else if (choosePiece > (0.5 * boardSize)) {
+            System.out.println("You can take no more than half the size of the pile.");
+            myTurn();
+        } else {
+            int newSize = Board.subtractPile(choosePiece);
+            System.out.println("\nThe new pile size is " + newSize + ".");
+            switchPlayers();
+        }
+    }
+
+    public static void switchPlayers() {
+        if (chosenPlayer == GameRunner.playerOne) {
+                chosenPlayer = GameRunner.playerTwo; // checks player and swaps to other
+            } else {
+                chosenPlayer = GameRunner.playerOne;
+            }
     }
 }
